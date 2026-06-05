@@ -1,0 +1,42 @@
+[package]
+name = "nova-10"
+version = "0.1.0"
+edition = "2021"
+authors = ["Sven Normen Esslinger <esslinger@esslinger.co>"]
+description = "Nova 10.0 — Major milestone core for NovaNet/xMesh/QNET decentralized mesh networking, hyperspace, and self-improving AI swarm orchestration."
+license = "MIT"
+repository = "https://github.com/digitaldesignerjazz/nova-10.0"
+
+[dependencies]
+# Core async & networking
+ tokio = { version = "1", features = ["full"] }
+ serde = { version = "1.0", features = ["derive"] }
+ serde_json = "1.0"
+ toml = "0.8"
+
+# Logging & observability
+ tracing = "0.1"
+ tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Crypto & privacy (future post-quantum ready)
+# ed25519-dalek = "2"
+# x25519-dalek = "2"
+
+# Yggdrasil / mesh integration (placeholder - will use Solnet or direct)
+# reqwest = { version = "0.12", features = ["json"] }
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bin]]
+name = "nova-node"
+path = "src/main.rs"
+
+[lib]
+name = "nova_10"
+path = "src/lib.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
